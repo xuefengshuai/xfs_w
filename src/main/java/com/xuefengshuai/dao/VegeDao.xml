@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.xuefengshuai.dao.VegeDao">
+  	<select id="selects" resultType="com.xuefengshuai.domain.Vege">
+  		select v.*,t.tname from vege v,type t where v.tid=t.tid
+  		<if test="name!=null and name!=''">
+  			and name like '%${name}%'
+  		</if>
+  	</select>
+  	<select id="look" resultType="com.xuefengshuai.domain.Vege">
+  		select v.*,t.tname from vege v,type t where v.tid=t.tid and id=#{id}
+  	</select>
+  	<update id="update">
+  	 	update vege set name=#{name},descc=#{descc},tid=#{tid} where id=#{id}
+  	</update>
+  	<insert id="add">
+  		insert into vege value(null,#{name},#{descc},#{tid})
+  	</insert>
+  </mapper>
+  
